@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch4jConfig>
+  <dontWrapJar>false</dontWrapJar>
+  <headerType>console</headerType>
+  <jar>G:\side-hustles\anti-afk\target\cp-anti-afk.jar</jar>
+  <outfile>G:\side-hustles\anti-afk\release\cp-anti-afk.exe</outfile>
+  <errTitle></errTitle>
+  <cmdLine></cmdLine>
+  <chdir>.</chdir>
+  <priority>normal</priority>
+  <downloadUrl>http://java.com/download</downloadUrl>
+  <supportUrl></supportUrl>
+  <stayAlive>true</stayAlive>
+  <restartOnCrash>false</restartOnCrash>
+  <manifest></manifest>
+  <icon>G:\side-hustles\anti-afk\afk.ico</icon>
+  <jre>
+    <path>%JAVA_HOME%;%PATH%</path>
+    <bundledJre64Bit>false</bundledJre64Bit>
+    <bundledJreAsFallback>false</bundledJreAsFallback>
+    <minVersion>1.8.0_311</minVersion>
+    <maxVersion></maxVersion>
+    <jdkPreference>preferJre</jdkPreference>
+    <runtimeBits>64/32</runtimeBits>
+  </jre>
+  <versionInfo>
+    <fileVersion>1.0.0.0</fileVersion>
+    <txtFileVersion>1.0.0</txtFileVersion>
+    <fileDescription>Anti-afk for FFXIV</fileDescription>
+    <copyright>CP Systems</copyright>
+    <productVersion>1.0.0.0</productVersion>
+    <txtProductVersion>1.0.0</txtProductVersion>
+    <productName>Anti-afk for FFXIV</productName>
+    <companyName></companyName>
+    <internalName>cp-anti-afk</internalName>
+    <originalFilename>cp-anti-afk.exe</originalFilename>
+    <trademarks></trademarks>
+    <language>ENGLISH_US</language>
+  </versionInfo>
+  <messages>
+    <startupErr>An error occurred while starting the application.</startupErr>
+    <bundledJreErr>This application requires a Java Runtime Environment.</bundledJreErr>
+    <jreVersionErr>This application requires a Java Runtime Environment</jreVersionErr>
+    <launcherErr>The registry refers to a nonexistent Java Runtime Environment installation or the runtime is corrupted.</launcherErr>
+    <instanceAlreadyExistsMsg>An application instance is already running.</instanceAlreadyExistsMsg>
+  </messages>
+</launch4jConfig>
