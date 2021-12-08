@@ -18,13 +18,13 @@ public class AntiAfkProcess {
     private Configuration config;
 
     public AntiAfkProcess() throws JAXBException, AWTException {
+        log.info("Starting program");
         configure();
         this.robot = new Robot();
         this.faker = new Faker();
     }
 
     private void configure() throws JAXBException {
-        log.info("Starting program");
         this.config = Configurer.configure();
         log.info("Configuration loaded");
     }
@@ -52,6 +52,7 @@ public class AntiAfkProcess {
         log.info("Pressing [{}] key now", key);
 
         robot.keyPress(key.getKeyCode());
+        robot.delay(faker.number().numberBetween(10, 101));
         robot.keyRelease(key.getKeyCode());
     }
 }
