@@ -2,8 +2,8 @@
 <launch4jConfig>
   <dontWrapJar>false</dontWrapJar>
   <headerType>console</headerType>
-  <jar>G:\side-hustles\anti-afk\target\cp-anti-afk.jar</jar>
-  <outfile>G:\side-hustles\anti-afk\release\cp-anti-afk.exe</outfile>
+  <jar>.\..\target\cp-anti-afk.jar</jar>
+  <outfile>.\..\release\cp-anti-afk.exe</outfile>
   <errTitle></errTitle>
   <cmdLine></cmdLine>
   <chdir>.</chdir>
@@ -13,7 +13,7 @@
   <stayAlive>true</stayAlive>
   <restartOnCrash>false</restartOnCrash>
   <manifest></manifest>
-  <icon>G:\side-hustles\anti-afk\afk.ico</icon>
+  <icon>.\afk.ico</icon>
   <jre>
     <path>%JAVA_HOME%;%PATH%</path>
     <bundledJre64Bit>false</bundledJre64Bit>
