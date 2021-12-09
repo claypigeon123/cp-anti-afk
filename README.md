@@ -1,5 +1,9 @@
 ## Changelog
 
+- 1.0.2
+  - Added input validation
+
+
 - 1.0.1
   - Added a short, random delay (10ms - 100ms) between pressing a key and releasing it to mimic human-like behaviour.
   

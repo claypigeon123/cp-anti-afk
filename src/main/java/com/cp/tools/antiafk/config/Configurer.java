@@ -2,6 +2,7 @@ package com.cp.tools.antiafk.config;
 
 import com.cp.tools.antiafk.config.model.Configuration;
 import com.cp.tools.antiafk.config.model.KeyboardButton;
+import com.cp.tools.antiafk.util.SystemInputProcessor;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;
@@ -10,7 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
-import java.util.Scanner;
 
 public class Configurer {
     private static final String CONFIG_FILENAME = "config.xml";
@@ -27,16 +27,13 @@ public class Configurer {
 
     private static Configuration setupConfig() throws JAXBException {
         log.info("No configuration found - starting guided setup");
-        Scanner scan = new Scanner(System.in);
+        SystemInputProcessor processor = new SystemInputProcessor();
 
-        System.out.print("Enter the minimum amount of time to wait between executions (in seconds): ");
-        int minTime = scan.nextInt();
+        int minTime = processor.nextPositiveInt("Enter the MINIMUM amount of time to wait between executions (in seconds): ");
+        int maxTime = processor.nextPositiveIntLargerThanOrEqualTo("Enter the MAXIMUM amount of time to wait between executions (in seconds): ", minTime);
+        KeyboardButton key = processor.nextKeyboardButton("Type out the key to press (valid options are SPACE, BACKSPACE, ENTER, I, U): ");
 
-        System.out.print("Enter the maximum amount of time to wait between executions (in seconds): ");
-        int maxTime = scan.nextInt();
-
-        System.out.print("Enter the key to press (valid options are SPACE, BACKSPACE, ENTER, I, U): ");
-        KeyboardButton key = KeyboardButton.valueOf(scan.next());
+        processor.close();
 
         Configuration config = new Configuration(minTime, maxTime, key);
         writeConfig(config);

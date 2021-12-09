@@ -31,6 +31,7 @@ public class AntiAfkProcess {
 
     public void start() {
         log.info("Starting anti-afk process");
+        log.info("Bring your game into the foreground, and enjoy your afk-free experience while you're away");
         while (true) {
             sleep();
             press();
