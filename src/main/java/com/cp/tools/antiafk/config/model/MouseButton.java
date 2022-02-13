@@ -3,9 +3,7 @@ package com.cp.tools.antiafk.config.model;
 import java.awt.event.MouseEvent;
 
 public enum MouseButton {
-    LMB(MouseEvent.BUTTON1),
-    RMB(MouseEvent.BUTTON2),
-    MMB(MouseEvent.BUTTON3);
+    LMB(MouseEvent.BUTTON1);
 
     private final int keyCode;
 

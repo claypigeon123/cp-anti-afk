@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import java.awt.*;
 import java.awt.event.InputEvent;
+import java.awt.event.MouseEvent;
 
 public class AntiAfkProcess {
     private static final Logger log = LoggerFactory.getLogger(AntiAfkProcess.class);
@@ -20,6 +21,7 @@ public class AntiAfkProcess {
     private Configuration config;
 
     public AntiAfkProcess() throws JAXBException, AWTException {
+        log.info("{}", MouseInfo.getNumberOfButtons());
         log.info("Starting program");
         configure();
         this.robot = new Robot();
@@ -55,7 +57,6 @@ public class AntiAfkProcess {
         if (config.getMouseButtonToPress() != null) {
             MouseButton mb = config.getMouseButtonToPress();
             log.info("Pressing [{}] mouse button now", mb);
-
             robot.mousePress(InputEvent.getMaskForButton(mb.getKeyCode()));
             robot.delay(faker.number().numberBetween(10, 101));
             robot.mouseRelease(InputEvent.getMaskForButton(mb.getKeyCode()));
