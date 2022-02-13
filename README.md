@@ -1,5 +1,8 @@
 ## Changelog
 
+- 1.0.3
+  - Added left mouse button support
+
 - 1.0.2
   - Added input validation
 
