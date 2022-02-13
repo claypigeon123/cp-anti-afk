@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Configuration {
@@ -17,4 +16,20 @@ public class Configuration {
     private long maximumTimeBetweenExecutions;
     @XmlElement(name = "key-to-press")
     private KeyboardButton keyToPress;
+    @XmlElement(name = "mouse-button-to-press")
+    private MouseButton mouseButtonToPress;
+
+    public Configuration(long minimumTimeBetweenExecutions, long maximumTimeBetweenExecutions, KeyboardButton keyToPress) {
+        this.minimumTimeBetweenExecutions = minimumTimeBetweenExecutions;
+        this.maximumTimeBetweenExecutions = maximumTimeBetweenExecutions;
+        this.keyToPress = keyToPress;
+        this.mouseButtonToPress = null;
+    }
+
+    public Configuration(long minimumTimeBetweenExecutions, long maximumTimeBetweenExecutions, MouseButton mouseButtonToPress) {
+        this.minimumTimeBetweenExecutions = minimumTimeBetweenExecutions;
+        this.maximumTimeBetweenExecutions = maximumTimeBetweenExecutions;
+        this.keyToPress = null;
+        this.mouseButtonToPress = mouseButtonToPress;
+    }
 }

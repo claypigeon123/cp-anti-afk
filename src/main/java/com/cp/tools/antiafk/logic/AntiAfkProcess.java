@@ -3,12 +3,14 @@ package com.cp.tools.antiafk.logic;
 import com.cp.tools.antiafk.config.Configurer;
 import com.cp.tools.antiafk.config.model.Configuration;
 import com.cp.tools.antiafk.config.model.KeyboardButton;
+import com.cp.tools.antiafk.config.model.MouseButton;
 import com.github.javafaker.Faker;
 import jakarta.xml.bind.JAXBException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
+import java.awt.event.InputEvent;
 
 public class AntiAfkProcess {
     private static final Logger log = LoggerFactory.getLogger(AntiAfkProcess.class);
@@ -26,7 +28,8 @@ public class AntiAfkProcess {
 
     private void configure() throws JAXBException {
         this.config = Configurer.configure();
-        log.info("Configuration loaded");
+        boolean isMouse = config.getMouseButtonToPress() != null;
+        log.info("Configuration loaded - using {}", isMouse ? "MOUSE" : "KEYBOARD");
     }
 
     public void start() {
@@ -49,6 +52,16 @@ public class AntiAfkProcess {
     }
 
     private void press() {
+        if (config.getMouseButtonToPress() != null) {
+            MouseButton mb = config.getMouseButtonToPress();
+            log.info("Pressing [{}] mouse button now", mb);
+
+            robot.mousePress(InputEvent.getMaskForButton(mb.getKeyCode()));
+            robot.delay(faker.number().numberBetween(10, 101));
+            robot.mouseRelease(InputEvent.getMaskForButton(mb.getKeyCode()));
+            return;
+        }
+
         KeyboardButton key = config.getKeyToPress();
         log.info("Pressing [{}] key now", key);
 

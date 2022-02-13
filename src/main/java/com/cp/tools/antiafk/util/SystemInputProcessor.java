@@ -1,6 +1,7 @@
 package com.cp.tools.antiafk.util;
 
 import com.cp.tools.antiafk.config.model.KeyboardButton;
+import com.cp.tools.antiafk.config.model.MouseButton;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -76,6 +77,38 @@ public class SystemInputProcessor {
             }
 
             return btn;
+        }
+    }
+
+    public MouseButton nextMouseButton(String message) {
+        while (true) {
+            String input = nextString(message);
+
+            MouseButton btn;
+            try {
+                btn = MouseButton.valueOf(input.toUpperCase());
+            } catch (IllegalArgumentException iae) {
+                log.error("Not a valid option. Try again.");
+                continue;
+            }
+
+            return btn;
+        }
+    }
+
+    public boolean nextYesNoDecision(String message) {
+        while (true) {
+            String input = nextString(message);
+
+            switch (input.toLowerCase()) {
+                case "yes":
+                    return true;
+                case "no":
+                    return false;
+                default:
+                    log.error("Not a valid option. Try again.");
+                    break;
+            }
         }
     }
 

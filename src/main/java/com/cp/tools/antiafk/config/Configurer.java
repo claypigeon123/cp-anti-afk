@@ -2,6 +2,7 @@ package com.cp.tools.antiafk.config;
 
 import com.cp.tools.antiafk.config.model.Configuration;
 import com.cp.tools.antiafk.config.model.KeyboardButton;
+import com.cp.tools.antiafk.config.model.MouseButton;
 import com.cp.tools.antiafk.util.SystemInputProcessor;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
@@ -31,13 +32,20 @@ public class Configurer {
 
         int minTime = processor.nextPositiveInt("Enter the MINIMUM amount of time to wait between executions (in seconds): ");
         int maxTime = processor.nextPositiveIntLargerThanOrEqualTo("Enter the MAXIMUM amount of time to wait between executions (in seconds): ", minTime);
-        KeyboardButton key = processor.nextKeyboardButton("Type out the key to press (valid options are SPACE, BACKSPACE, ENTER, I, U): ");
+
+        boolean useMouse = processor.nextYesNoDecision("Use mouse instead of keyboard (yes/no): ");
+
+        Configuration config;
+        if (useMouse) {
+            MouseButton key = processor.nextMouseButton("Type out the mouse button to press (valid options are RMB, LMB, MMB): ");
+            config = new Configuration(minTime, maxTime, key);
+        } else {
+            KeyboardButton key = processor.nextKeyboardButton("Type out the key to press (valid options are SPACE, BACKSPACE, ENTER, I, U): ");
+            config = new Configuration(minTime, maxTime, key);
+        }
 
         processor.close();
-
-        Configuration config = new Configuration(minTime, maxTime, key);
         writeConfig(config);
-
         return config;
     }
 
